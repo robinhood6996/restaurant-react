@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;800;900&family=Poppins:wght@200;400;600;800&display=swap');
+
+nav.navbar.navbar-expand-lg.navbar-light.bg-light {
+    background: rgb(255, 255, 255) !important;
+}
+
+a.nav-link {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(0, 0, 0) !important;
+    padding-left: 20px !important;
+    font-family: 'Inter', sans-serif
+}
+
+.btButtonWidgetLink{
+        font-weight: 400;
+    visibility: initial;
+    font-family: "Inter",Arial,Helvetica,sans-serif;
+    line-height: 28px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin: 0;
+    text-decoration: none;
+    outline: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    transition: all 300ms ease;
+    color: #e84242;
+    box-shadow: 0 0 0 2px #e84242 inset;
+    border-radius: 50px;
+    padding: .5em 1.5em;
+}
+.btButtonWidgetLink:hover{
+    background:#cc3a3a;
+    color: white;
+}

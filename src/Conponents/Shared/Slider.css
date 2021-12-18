@@ -1,0 +1,13 @@
+.slider {
+    background: #cc3a3a;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+h2.slider-title {
+    color: white;
+    font-size: 70px;
+    font-family: 'Rakkas';
+    font-weight: 900;
+}
+

@@ -1,0 +1,65 @@
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.slide-1{
+    background-image: url('../../../Images/slider/home_slider_01.jpg');
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+background-origin: content-box;
+}
+.slide-2{
+    background-image: url('../../../Images/slider/home_slider_02.jpg');
+    height: 100vh;
+    width: 100%;
+}
+.slide-3{
+    background-image: url('../../../Images/slider/home_slider_03.jpg');
+    height: 100vh;
+    width: 100%;
+}
+.slide-details{
+    display: flex;
+}
+.slide-text{
+    width: 500px;
+    color: white;
+    position: relative;
+    text-align: left;
+}
+.famous-text{
+    font-family: Rakkas;
+    color: wheat;
+}
+.famous-details{
+    font-size: 13px;
+}
