@@ -35,8 +35,8 @@ const Navigation = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link as={Link} to="/">Home</Nav.Link>
-                            <Nav.Link as={Link} to="/cart">Breakfast</Nav.Link>
-                            <Nav.Link as={Link} to="#link">Dinner</Nav.Link>
+                            <Nav.Link as={Link} to="/cart">Special</Nav.Link>
+                            <Nav.Link as={Link} to="/shop">Shop</Nav.Link>
                             {/* <NavDropdown title="More" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1">More</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -77,7 +77,7 @@ const Navigation = () => {
                                         <p>$6.00</p>
                                     </div> */}
                                     {carts.length ? <div className='checkout-btn d-flex justify-content-between'>
-                                        <button className='btn btn-danger'><Link to="/cart">View Cart</Link></button>
+                                        <button className='btn btn-danger'><Link style={{ color: 'white', textDecoration: 'none' }} to="/cart">View Cart</Link></button>
                                         <button className='btn btn-danger'>Checkout</button>
                                     </div> : <p>Your Cart is Empty</p>}
                                 </NavDropdown.Item>

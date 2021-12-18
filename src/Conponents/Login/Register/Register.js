@@ -23,7 +23,7 @@ const Register = memo(() => {
             alert('Your password did not match');
             return
         }
-        registerUser(loginData.email, loginData.name, loginData.phone, loginData.location, loginData.password, history);
+        registerUser(loginData.email, loginData.password, loginData.name, loginData.phone, loginData.location, history);
 
     }
     return (

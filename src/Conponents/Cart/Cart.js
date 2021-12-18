@@ -1,9 +1,23 @@
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Col, Container, Row, Table } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import bg from '../../Images/bugers/1.jpg'
 import Navigation from '../Shared/Navigation';
 import './Cart.css'
 const Cart = () => {
+    const carts = useSelector(cart => cart.cart);
+
+    let total = 0;
+    const totalQuantity = 0;
+
+    for (const product of carts) {
+        total = total + product.qty * product.price;
+
+    }
+    let shipping = total > 0 ? 5 : 0;
     return (
         <div>
             <Navigation></Navigation>
@@ -20,12 +34,14 @@ const Cart = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className='border-bottom'>
-                            <td><button className='btn btn-danger'>X</button><img src={bg} width={60} alt="" /><span className='fw-bold'>Beacon Beacon Burger</span></td>
-                            <td className='fw-bold'>$20</td>
-                            <td className='fw-bold'>2</td>
-                            <td className='fw-bold'>$40</td>
-                        </tr>
+                        {
+                            carts.map(cart => <tr className='border-bottom'>
+                                <td><button className='btn btn-danger'>X</button><img src={cart.image} width={60} alt="" /><span className='fw-bold'>{cart.name}</span></td>
+                                <td className='fw-bold'>${cart.price}</td>
+                                <td className='fw-bold'>{cart.qty}</td>
+                                <td className='fw-bold'>${cart.qty * cart.price}</td>
+                            </tr>)
+                        }
                         <tr className='border-bottom'>
                             <td>Coupon: <form action="" className='d-flex'><input type="text" placeholder='Coupon Code' /> <input className='btn btn-danger m-1' type="submit" value="Apply" /></form></td>
                             <td></td>
@@ -42,24 +58,25 @@ const Cart = () => {
                             <td className='fw-bold fs-5'>Subtotal:</td>
                             <td></td>
                             <td></td>
-                            <td className='fw-bold fs-5'>$56</td>
+                            <td className='fw-bold fs-5'>${total}</td>
                         </tr>
                         <tr className='border-bottom'>
                             <td className='fw-bold fs-5'>Shipping:</td>
                             <td></td>
                             <td></td>
-                            <td className='fw-bold fs-5'>$5</td>
+                            <td className='fw-bold fs-5'>${shipping}</td>
                         </tr>
                         <tr >
                             <td className='fw-bold fs-5'>Total:</td>
                             <td></td>
                             <td></td>
-                            <td className='fw-bold fs-5'>$61</td>
+                            <td className='fw-bold fs-5'>${total + shipping}</td>
                         </tr>
                     </tbody>
                 </Table>
-                <div className='d-flex justify-content-center'>
-                    <button className='text-center btn btn-danger'>Proceed To Checkout</button>
+                <div className='d-flex justify-content-center m-2'>
+                    <button className='text-center btn btn-dark m-2'><FontAwesomeIcon icon={faArrowLeft} /><Link className='link' to="/shop">Continue Shopping</Link></button>
+                    <button className='text-center btn btn-danger m-2'>Proceed To Checkout <FontAwesomeIcon icon={faArrowRight} /> </button>
                 </div>
             </Container>
         </div>

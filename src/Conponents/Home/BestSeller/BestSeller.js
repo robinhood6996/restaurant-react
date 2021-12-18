@@ -10,7 +10,6 @@ import SingleProduct from './SingleProduct';
 
 const BestSeller = () => {
     const [foods, setFoods] = useState([]);
-    const [cart, setCart] = useState([]);
 
     useEffect(() => {
         fetch('./food.json')
@@ -19,14 +18,7 @@ const BestSeller = () => {
             )
     }, []);
 
-    const handleAdd = (food) => {
-        const existingCart = [...cart];
-        if (existingCart.indexOf(food) === -1) {
-            const newCart = [...existingCart, food];
-            setCart(newCart);
-        }
-    }
-    console.log(cart)
+
     return (
         <div className='mb-10 best-seller'>
             <h2 className='text-center best-title'>Best Seller</h2>
@@ -34,7 +26,7 @@ const BestSeller = () => {
             <Container>
                 <Row>
                     {
-                        foods.slice(3, 6).map((food) => <SingleProduct key={food.id} food={food} handleAdd={handleAdd}></SingleProduct>)
+                        foods.slice(3, 6).map((food) => <SingleProduct key={food.id} food={food} ></SingleProduct>)
                     }
                 </Row>
 
@@ -45,7 +37,7 @@ const BestSeller = () => {
                         </div>
                     </Col>
                     {
-                        foods.slice(1, 3).map((food) => <SingleProduct key={food.id} food={food} handleAdd={handleAdd}></SingleProduct>)
+                        foods.slice(1, 3).map((food) => <SingleProduct key={food.id} food={food}></SingleProduct>)
                     }
 
                 </Row>

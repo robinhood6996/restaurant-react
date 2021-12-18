@@ -10,7 +10,7 @@ const Login = () => {
     const location = useLocation();
     const history = useNavigate();
     const { signInWithGoogle } = useAuth();
-
+    console.log(history)
 
     const handleGoogleSignIn = () => {
         signInWithGoogle(location, history)
