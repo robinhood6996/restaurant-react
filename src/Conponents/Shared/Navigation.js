@@ -1,15 +1,29 @@
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import logo from '../../Images/logo2.png';
 import food from '../../Images/bugers/1.jpg'
 import './Navigation.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart } from '../../redux/action/cartAction';
+import { Link } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
+
+
+
+
+
+
+
 const Navigation = () => {
     const carts = useSelector(cart => cart.cart);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const { user, logout } = useAuth();
+
+    const handleLogOut = () => {
+        logout();
+    }
     return (
         <>
             <Navbar bg="light" expand="lg">
@@ -20,23 +34,27 @@ const Navigation = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#home">Home</Nav.Link>
-                            <Nav.Link href="#link">Breakfast</Nav.Link>
-                            <Nav.Link href="#link">Lunch</Nav.Link>
-                            <Nav.Link href="#link">Dinner</Nav.Link>
-                            <NavDropdown title="More" id="basic-nav-dropdown">
+                            <Nav.Link as={Link} to="/">Home</Nav.Link>
+                            <Nav.Link as={Link} to="/cart">Breakfast</Nav.Link>
+                            <Nav.Link as={Link} to="#link">Dinner</Nav.Link>
+                            {/* <NavDropdown title="More" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1">More</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                            </NavDropdown>
+                            </NavDropdown> */}
+                            <Nav.Link className='fs-7'>
+                                {
+                                    user?.displayName ? (<p style={{ color: '#cc3a3a' }}>Welcomne! {user.displayName}</p>) : <p></p>
+                                }
+                            </Nav.Link>
                         </Nav>
                         <Nav className='me-2 align-items-center'>
-                            <Nav.Link href="#link" className='mr-2'><span className='fs-6'>Order By Phone</span><br /><span style={{ color: '#cc3a3a' }}>0156897464</span></Nav.Link>
+                            <Nav.Link href="#link" className='mr-2'><span className='' style={{ fontSize: 14 }}>Order By Phone</span><br /><span style={{ color: '#cc3a3a' }}>0156897464</span></Nav.Link>
 
                             <NavDropdown title={<button className='ms-4 id="basic-nav-dropdown"' style={{ border: '1px solid #cc3a3a', background: 'none', borderRadius: 10 }}> <FontAwesomeIcon icon={faCartPlus} className='fs-5' /> <span className='fs-5'>{carts.length ? carts.length : 0}</span></button>} id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1" className='cart-items'>
+                                <NavDropdown.Item className='cart-items'>
                                     {/* <div className='cart-item'>
                                         There are nothing on your cart!
                                     </div> */}
@@ -47,7 +65,7 @@ const Navigation = () => {
                                             </div>
                                             <div className="food-details">
                                                 <p>{cart.name} <button className='btn btn-danger' onClick={() => dispatch(removeFromCart(cart))}>X</button></p>
-                                                <p>{cart.qty} x ${cart.price} = </p>
+                                                <p>{cart.qty} x ${cart.price} = ${cart.qty * cart.price}</p>
                                             </div>
                                         </div>)
                                     }
@@ -58,10 +76,10 @@ const Navigation = () => {
                                         <p>Subotal:</p>
                                         <p>$6.00</p>
                                     </div> */}
-                                    <div className='checkout-btn d-flex justify-content-between'>
-                                        <button className='btn btn-danger'>View Cart</button>
+                                    {carts.length ? <div className='checkout-btn d-flex justify-content-between'>
+                                        <button className='btn btn-danger'><Link to="/cart">View Cart</Link></button>
                                         <button className='btn btn-danger'>Checkout</button>
-                                    </div>
+                                    </div> : <p>Your Cart is Empty</p>}
                                 </NavDropdown.Item>
 
                             </NavDropdown>
@@ -70,11 +88,20 @@ const Navigation = () => {
                                     <span className="btButtonWidgetText">VIEW FULL MENU</span>
                                 </a>
                             </div>
-                            <div className='btwlink ms-4'>
-                                <a href="https://eatsy.bold-themes.com/burger/menu/" target="_self" className="btButtonWidgetLink ml-2">
-                                    <span className="btButtonWidgetText">Login</span>
-                                </a>
-                            </div>
+                            {
+                                user?.displayName ? (
+                                    <div className='btwlink ms-4'>
+                                        <span className="btButtonWidgetText">
+                                            <Button variant='danger' onClick={handleLogOut}>Logout</Button>
+                                        </span>
+                                    </div>)
+                                    :
+                                    (<div className='btwlink ms-4'>
+                                        <span className="btButtonWidgetText">
+                                            <Button variant='dark'><Link to='/login' style={{ color: 'white' }}>Login</Link></Button>
+                                        </span>
+                                    </div>)
+                            }
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

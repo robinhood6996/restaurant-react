@@ -44,50 +44,10 @@ const BestSeller = () => {
                             <img className='img-fluid' src={banner} alt="" />
                         </div>
                     </Col>
-                    <Col style={{ marginBottom: 10 }}>
-                        <Card style={{ width: '25rem', height: '44rem', padding: 20, borderRadius: 50 }}>
-                            <div className='card-title' >
-                                <Card.Text className='fs-6 fw-bold'>
-                                    BEEF
-                                </Card.Text>
-                                <Card.Text className='fs-1 fw-bold food-name'>
-                                    CrazyBeefTuna Burger
-                                </Card.Text>
-                            </div>
-                            <Card.Img variant="top" src={burger4} />
-                            <Card.Body className='best-seller-food-card'>
-                                <div>
-                                    <h3 className='food-price'>$8.00</h3>
-                                    <p className='food-cal'>200 gr/600 cal</p>
-                                </div>
-                                <div>
-                                    <FontAwesomeIcon className='cart-plus' icon={faPlus} />
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    <Col style={{ marginBottom: 10 }}>
-                        <Card style={{ width: '25rem', height: '38rem', padding: 20, borderRadius: 50 }}>
-                            <div className='card-title'>
-                                <Card.Text className='fs-6 fw-bold'>
-                                    BEEF
-                                </Card.Text>
-                                <Card.Text className='fs-1 fw-bold food-name'>
-                                    Bøfsandwich
-                                </Card.Text>
-                            </div>
-                            <Card.Img variant="top" src={burger5} />
-                            <Card.Body className='best-seller-food-card'>
-                                <div>
-                                    <h3 className='food-price'>$8.00</h3>
-                                    <p className='food-cal'>200 gr/600 cal</p>
-                                </div>
-                                <div>
-                                    <FontAwesomeIcon className='cart-plus' icon={faPlus} />
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
+                    {
+                        foods.slice(1, 3).map((food) => <SingleProduct key={food.id} food={food} handleAdd={handleAdd}></SingleProduct>)
+                    }
+
                 </Row>
             </Container>
         </div>

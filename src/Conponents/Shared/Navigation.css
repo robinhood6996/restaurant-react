@@ -5,7 +5,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light {
 }
 
 a.nav-link {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 600;
     color: rgb(0, 0, 0) !important;
     padding-left: 20px !important;
@@ -17,7 +17,7 @@ a.nav-link {
     visibility: initial;
     font-family: "Inter",Arial,Helvetica,sans-serif;
     line-height: 28px;
-    font-size: 16px;
+    font-size: 14px;
     box-sizing: border-box;
     margin: 0;
     text-decoration: none;
@@ -36,4 +36,13 @@ a.nav-link {
 .btButtonWidgetLink:hover{
     background:#cc3a3a;
     color: white;
+}
+
+span.btButtonWidgetText a {
+    color: red;
+    text-decoration: none;
+   
+}
+span.btButtonWidgetText a:hover{
+    color:white
 }

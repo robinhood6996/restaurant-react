@@ -1,0 +1,10 @@
+section.login-area {
+    background: #F5E7C1;
+    padding: 20px;
+    height: 100vh;
+}
+
+h2.login-heading {
+    font-family: 'Rakkas';
+    font-size: 60px;
+}
