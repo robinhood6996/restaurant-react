@@ -4,7 +4,6 @@ import Navigation from '../../Shared/Navigation';
 import Slider from '../../Shared/Slider';
 import BestMore from '../BestMore/BestMore';
 import BestSeller from '../BestSeller/BestSeller';
-import HomeSlider from '../HomeSlider/HomeSlider';
 
 const Home = () => {
     return (

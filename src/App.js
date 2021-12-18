@@ -10,6 +10,11 @@ import AuthProvider from './context/AuthProvider/AuthProvider';
 import Shop from './Conponents/Shop/Shop/Shop';
 import Checkout from './Conponents/Checkout/Checkout/Checkout';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import Dashboard from './Conponents/Admin/Dashboard/Dashboard/Dashboard';
+import DashboardHome from './Conponents/Admin/Dashboard/DashboardHome/DashboardHome';
+import AddFood from './Conponents/Admin/Dashboard/AddFood/AddFood';
+import AllFood from './Conponents/Admin/Dashboard/AllFood/AllFood';
+import AddAdmin from './Conponents/Admin/Dashboard/AddAdmin/AddAdmin';
 
 function App() {
   return (
@@ -23,6 +28,14 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="cart" element={<PrivateRoute><Cart /></PrivateRoute>} />
             <Route path="/checkout" element={<PrivateRoute><Checkout /></PrivateRoute>} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route exact path={`dashboard`} element={<Dashboard />} />
+              <Route path={`/dashboard/addfood`} element={<AddFood />} />
+              <Route path={`/dashboard/allfood`} element={<AllFood />} />
+              <Route path={`/dashboard/addadmin`} element={<AddAdmin />} />
+
+            </Route>
           </Routes>
         </BrowserRouter>
       </AuthProvider>
