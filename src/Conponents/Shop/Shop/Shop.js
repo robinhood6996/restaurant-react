@@ -25,7 +25,7 @@ const Shop = () => {
                 <Container>
                     <Row >
                         {
-                            foods.map(food => <Col xs={12} lg={4} style={{ padding: 10 }}>
+                            foods.map(food => <Col xs={12} lg={4} style={{ padding: 10 }} key={food.id}>
                                 <Card style={{ width: '25rem', padding: 20, borderRadius: 20 }}>
                                     <Card.Img variant="top" width={150} src={food.image} />
                                     <Card.Body>

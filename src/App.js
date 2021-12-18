@@ -8,6 +8,8 @@ import Login from './Conponents/Login/Login/Login';
 import Register from './Conponents/Login/Register/Register';
 import AuthProvider from './context/AuthProvider/AuthProvider';
 import Shop from './Conponents/Shop/Shop/Shop';
+import Checkout from './Conponents/Checkout/Checkout/Checkout';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -19,7 +21,8 @@ function App() {
             <Route path="/shop" element={<Shop />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="cart" element={<Cart></Cart>} />
+            <Route path="cart" element={<PrivateRoute><Cart /></PrivateRoute>} />
+            <Route path="/checkout" element={<PrivateRoute><Checkout /></PrivateRoute>} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

@@ -1,0 +1,30 @@
+.footer-contact{
+    background: #f5e7c1 !important;
+}
+
+.delivery-heading{
+    font-family: Rakkas;
+    font-size: 60px;
+    color:#cc3a3a
+}
+.number{
+    color:#000000;
+}
+
+.footer-newsletter{
+    background-image: url('../../../Images/footer.jpg');
+}
+.footer-nav-link{
+    font-size: 15px;
+    font-weight: 400;
+    color:white;
+    list-style: none;
+    padding: 10px;
+}
+.footer-nav-url{
+    text-decoration: none;
+    color: white;
+}
+.footer-nav-url:hover{
+    color: white;
+}
