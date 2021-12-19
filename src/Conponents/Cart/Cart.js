@@ -2,9 +2,10 @@ import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Col, Container, Row, Table } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import bg from '../../Images/bugers/1.jpg'
+import { removeFromCart } from '../../redux/action/cartAction';
 import Navigation from '../Shared/Navigation';
 
 import './Cart.css';
@@ -13,7 +14,7 @@ import './Cart.css';
 
 const Cart = () => {
     const carts = useSelector(cart => cart.cart);
-
+    const dispatch = useDispatch()
     let total = 0;
     const totalQuantity = 0;
 
@@ -42,7 +43,7 @@ const Cart = () => {
                     <tbody>
                         {
                             carts.map(cart => <tr className='border-bottom' key={cart.id}>
-                                <td><button className='btn btn-danger'>X</button><img src={cart.image} width={60} alt="" /><span className='fw-bold'>{cart.name}</span></td>
+                                <td><button className='btn btn-danger' onClick={() => dispatch(removeFromCart(cart))} >X</button><img src={`data:image;base64,${cart.image}`} width={60} alt="" /><span className='fw-bold'>{cart.name}</span></td>
                                 <td className='fw-bold'>${cart.price}</td>
                                 <td className='fw-bold'>{cart.qty}</td>
                                 <td className='fw-bold'>${cart.qty * cart.price}</td>
