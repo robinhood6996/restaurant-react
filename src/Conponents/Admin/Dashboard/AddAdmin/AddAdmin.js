@@ -9,7 +9,7 @@ const AddAdmin = () => {
     const onSubmit = e => {
         e.preventDefault();
         const user = { email };
-        axios.put('http://localhost:1111/user/admin', user)
+        axios.put('https://ancient-ravine-11592.herokuapp.com/admin', user)
             .then(res => {
                 if (res.data.matchedCount) {
                     alert('Updataed')

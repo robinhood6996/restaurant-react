@@ -6,7 +6,7 @@ const AllFood = () => {
     const [foods, setFoods] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:1111/food')
+        axios.get('https://ancient-ravine-11592.herokuapp.com/food')
             .then(res => setFoods(res.data))
     }, [])
     return (

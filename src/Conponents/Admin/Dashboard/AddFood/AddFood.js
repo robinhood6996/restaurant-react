@@ -22,7 +22,7 @@ const AddFood = () => {
         formData.append('ing', ing);
         formData.append('desc', desc);
         formData.append('image', image);
-        axios.post('http://localhost:1111/food', formData)
+        axios.post('https://ancient-ravine-11592.herokuapp.com/food', formData)
             .then(res => {
                 if (res.data.insertedId) {
                     Swal.fire(

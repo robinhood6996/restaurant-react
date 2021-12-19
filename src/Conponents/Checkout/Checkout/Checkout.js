@@ -54,7 +54,7 @@ const Checkout = () => {
         dispatch(removeAllFromCart());
         localStorage.removeItem('carts');
         setOrdered(true);
-        axios.post('http://localhost:1111/order', order)
+        axios.post('https://ancient-ravine-11592.herokuapp.com/order', order)
             .then(res => {
                 if (res.data.insertedId) {
                     Swal.fire(

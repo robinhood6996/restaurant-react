@@ -12,7 +12,7 @@ const BestSeller = () => {
     const [foods, setFoods] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:1111/food')
+        fetch('https://ancient-ravine-11592.herokuapp.com/food')
             .then(res => res.json())
             .then(data => setFoods(data)
             )

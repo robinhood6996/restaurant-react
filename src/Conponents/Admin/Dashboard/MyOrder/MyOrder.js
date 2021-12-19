@@ -8,7 +8,7 @@ const MyOrder = () => {
     const { user } = useAuth();
 
     useEffect(() => {
-        const url = `http://localhost:1111/order/${user?.email}`
+        const url = `https://ancient-ravine-11592.herokuapp.com/order/${user?.email}`
         axios.get(url)
             .then(res => setFoods(res.data))
     }, [user])
