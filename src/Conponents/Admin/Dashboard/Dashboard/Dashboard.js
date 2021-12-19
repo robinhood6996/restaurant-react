@@ -24,34 +24,38 @@ const drawerWidth = 240;
 function ResponsiveDrawer(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-
+    const { admin } = useAuth();
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
 
     const drawer = (
-        <div>
+        <div >
             <Toolbar />
             <Divider />
             <List>
-                <ListItem>
-                    <InboxIcon /><Link to="/dashboard/addfood">Add Food</Link>
-                </ListItem>
-                <ListItem>
-                    <InboxIcon /><Link to="/dashboard/allfood">All Food</Link>
-                </ListItem>
-                <ListItem>
-                    <InboxIcon /><Link to="/dashboard/addadmin">Add Admin</Link>
-                </ListItem>
+                {
+                    admin === true ? <div> <ListItem>
+                        <InboxIcon /><Link to="/dashboard/addfood">Add Food</Link>
+                    </ListItem>
+                        <ListItem>
+                            <InboxIcon /><Link to="/dashboard/allfood">All Food</Link>
+                        </ListItem>
+                        <ListItem>
+                            <InboxIcon /><Link to="/dashboard/addadmin">Add Admin</Link>
+                        </ListItem></div> :
+                        <ListItem>
+                            <Link style={{ textDecoration: 'none', color: '#cc3a3a', fontWeight: 'bold' }} to="/dashboard/myorder">My Orders</Link>
+                        </ListItem>
+
+                }
+
             </List>
         </div>
     );
 
     const container = window !== undefined ? () => window().document.body : undefined;
-    const { admin } = useAuth();
-    if (admin !== true) {
-        <Navigate to="/" />
-    }
+
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
@@ -94,7 +98,7 @@ function ResponsiveDrawer(props) {
                     }}
                     sx={{
                         display: { xs: 'block', sm: 'none' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, background: '#f5e7c1' },
                     }}
                 >
                     {drawer}
@@ -103,7 +107,7 @@ function ResponsiveDrawer(props) {
                     variant="permanent"
                     sx={{
                         display: { xs: 'none', sm: 'block' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, background: '#f5e7c1' },
                     }}
                     open
                 >
@@ -112,7 +116,7 @@ function ResponsiveDrawer(props) {
             </Box>
             <Box
                 component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)`, } }}
             >
                 <Toolbar />
 

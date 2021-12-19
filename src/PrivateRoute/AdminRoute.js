@@ -9,7 +9,7 @@ const AdminRoute = ({ children, ...rest }) => {
     if (isLoading) {
         return <Spinner animation="border" />;
     }
-    return user.email && admin ? children : <Navigate to="/" />
+    return admin === true ? children : <Navigate to="/" />
 };
 
 export default AdminRoute;

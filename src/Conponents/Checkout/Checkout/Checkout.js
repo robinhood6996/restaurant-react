@@ -29,7 +29,7 @@ const Checkout = () => {
     //get all orders
     let foods = {};
     for (const product of carts) {
-        foods[product.id] = product.qty;
+        foods[product._id] = product.qty;
     }
 
     //calculate

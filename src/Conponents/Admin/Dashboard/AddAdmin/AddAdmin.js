@@ -1,26 +1,36 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-
+import useAuth from '../../../../Hooks/useAuth';
 const AddAdmin = () => {
+    const [email, setEmail] = useState('');
+    console.log(email);
+
+    const onSubmit = e => {
+        e.preventDefault();
+        const user = { email };
+        axios.put('http://localhost:1111/user/admin', user)
+            .then(res => {
+                if (res.data.matchedCount) {
+                    alert('Updataed')
+                }
+            })
+    }
     return (
         <div>
             <Container className='d-flex justify-content-center flex-column'>
-                <Form xs={12} style={{ width: '80%' }}>
+                <Form xs={12} style={{ width: '80%' }} onSubmit={onSubmit}>
                     <h2 className='login-heading'>Add Admin</h2>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address*</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" name="email" />
+                        <Form.Control type="email" placeholder="Enter email" name="email" onBlur={e => setEmail(e.target.value)} />
                     </Form.Group>
                     <Button variant="danger" type="submit">
                         Add
-                    </Button><br />
-                    OR
+                    </Button>
                 </Form>
 
                 <div>
-                    <Button variant="danger" size="sm" className='mt-2' >
-                        Login with Google
-                    </Button>
                 </div>
             </Container>
         </div>
