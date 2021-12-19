@@ -1,6 +1,6 @@
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import logo from '../../Images/logo2.png';
 import food from '../../Images/bugers/1.jpg'
@@ -9,9 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart } from '../../redux/action/cartAction';
 import { Link } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
-
-
-
+import axios from 'axios';
 
 
 
@@ -19,11 +17,12 @@ import useAuth from '../../Hooks/useAuth';
 const Navigation = () => {
     const carts = useSelector(cart => cart.cart);
     const dispatch = useDispatch();
-    const { user, logout } = useAuth();
+    const { user, logout, isLoading } = useAuth();
 
     const handleLogOut = () => {
         logout();
     }
+
     return (
         <>
             <Navbar bg="light" expand="lg">
@@ -61,7 +60,7 @@ const Navigation = () => {
                                     {
                                         carts.map(cart => <div key={cart.id} className='cart-item d-flex justify-content-evenly border-bottom'>
                                             <div className="food-image">
-                                                <img src={cart.image} width={50} alt="" />
+                                                <img src={`data:image;base64,${cart.image}`} width={50} alt="" />
                                             </div>
                                             <div className="food-details">
                                                 <p>{cart.name} <button className='btn btn-danger' onClick={() => dispatch(removeFromCart(cart))}>X</button></p>
@@ -84,9 +83,9 @@ const Navigation = () => {
 
                             </NavDropdown>
                             <div className='btwlink ms-4'>
-                                <a href="https://eatsy.bold-themes.com/burger/menu/" target="_self" className="btButtonWidgetLink ml-2">
+                                <Link to={`/shop`} className="btButtonWidgetLink ml-2">
                                     <span className="btButtonWidgetText">VIEW FULL MENU</span>
-                                </a>
+                                </Link>
                             </div>
                             {
                                 user?.displayName ? (

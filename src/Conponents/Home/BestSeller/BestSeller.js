@@ -12,7 +12,7 @@ const BestSeller = () => {
     const [foods, setFoods] = useState([]);
 
     useEffect(() => {
-        fetch('./food.json')
+        fetch('http://localhost:1111/food')
             .then(res => res.json())
             .then(data => setFoods(data)
             )

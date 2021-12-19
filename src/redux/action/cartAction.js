@@ -10,3 +10,9 @@ export function removeFromCart(payload) {
         payload
     }
 }
+
+export function removeAllFromCart() {
+    return {
+        type: 'REMOVE_ALL_FROM_CART'
+    }
+}

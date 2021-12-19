@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, updateProfile, getIdToken, signOut } from "firebase/auth";
 import initilizeFirebase from '../firebase/firebase.init';
+import axios from 'axios';
 
 
 // initialize firebase app
@@ -22,10 +23,10 @@ const useFirebase = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setAuthError('');
-                const newUser = { email, displayName: name };
+                const newUser = { email, displayName: name, phone, location, isAdmin: false };
                 setUser(newUser);
                 // save user to the database
-                // saveUser(email, name, 'POST');
+                saveUser(email, name, phone, location, 'POST');
                 // send name to firebase after creation
                 updateProfile(auth.currentUser, {
                     displayName: name,
@@ -63,7 +64,7 @@ const useFirebase = () => {
         signInWithPopup(auth, googleProvider)
             .then((result) => {
                 const user = result.user;
-                // saveUser(user.email, user.displayName, 'PUT');
+                saveUser(user.email, user.displayName, '', '', 'PUT');
                 setAuthError('');
                 const destination = location?.state?.from || '/';
                 history(destination);
@@ -105,20 +106,33 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
-    // const saveUser = (email, displayName, method) => {
-    //     const user = { email, displayName };
-    //     fetch('http://localhost:5000/users', {
-    //         method: method,
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(user)
-    //     })
-    //         .then()
-    // }
+
+    const saveUser = (email, displayName, phone, location, method) => {
+        const user = { email, displayName, phone, location }
+        fetch('http://localhost:1111/users', {
+            method: method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+
+            })
+
+    }
+
+    useEffect(() => {
+        axios.get(`http://localhost:1111/user/${user.email}`)
+            .then(res => {
+                setAdmin(res.data.isAdmin);
+            })
+    }, [user.email]);
 
     return {
         user,
+        setUser,
         admin,
         token,
         isLoading,

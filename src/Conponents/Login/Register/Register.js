@@ -21,7 +21,7 @@ const Register = memo(() => {
         e.preventDefault();
         if (loginData.password !== loginData.password2) {
             alert('Your password did not match');
-            return
+            return;
         }
         registerUser(loginData.email, loginData.password, loginData.name, loginData.phone, loginData.location, history);
 

@@ -15,6 +15,8 @@ import DashboardHome from './Conponents/Admin/Dashboard/DashboardHome/DashboardH
 import AddFood from './Conponents/Admin/Dashboard/AddFood/AddFood';
 import AllFood from './Conponents/Admin/Dashboard/AllFood/AllFood';
 import AddAdmin from './Conponents/Admin/Dashboard/AddAdmin/AddAdmin';
+import SingleFood from './Conponents/Food/SingleFood/SingleFood';
+import AdminRoute from './PrivateRoute/AdminRoute';
 
 function App() {
   return (
@@ -24,13 +26,15 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/shop" element={<Shop />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
             <Route path="cart" element={<PrivateRoute><Cart /></PrivateRoute>} />
             <Route path="/checkout" element={<PrivateRoute><Checkout /></PrivateRoute>} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard" element={<Dashboard />}>
-              <Route exact path={`dashboard`} element={<Dashboard />} />
+            <Route path="/food/:id" element={<SingleFood></SingleFood>} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+
+            <Route path="/dashboard" element={<AdminRoute><Dashboard /></AdminRoute>} />
+            <Route path="/dashboard" element={<AdminRoute><Dashboard /></AdminRoute>}>
+              <Route exact path={`dashboard`} element={<AdminRoute><Dashboard /></AdminRoute>} />
               <Route path={`/dashboard/addfood`} element={<AddFood />} />
               <Route path={`/dashboard/allfood`} element={<AllFood />} />
               <Route path={`/dashboard/addadmin`} element={<AddAdmin />} />

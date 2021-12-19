@@ -6,11 +6,12 @@ import food from '../../../Images/Foods/10.jpg';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../redux/action/cartAction';
+import Footer from '../../Shared/Footer/Footer';
 const Shop = () => {
     const [foods, setFoods] = useState([]);
     const dispatch = useDispatch();
     useEffect(() => {
-        fetch('./food.json')
+        fetch('http://localhost:1111/food')
             .then(res => res.json())
             .then(data => setFoods(data)
             )
@@ -27,9 +28,9 @@ const Shop = () => {
                         {
                             foods.map(food => <Col xs={12} lg={4} style={{ padding: 10 }} key={food.id}>
                                 <Card style={{ width: '25rem', padding: 20, borderRadius: 20 }}>
-                                    <Card.Img variant="top" width={150} src={food.image} />
+                                    <Card.Img variant="top" width={150} src={`data:image/jpeg;base64,${food.image}`} />
                                     <Card.Body>
-                                        <Card.Title ><Link style={{ color: '#cc3a3a', textDecoration: 'none' }} to="">{food.name}</Link></Card.Title>
+                                        <Card.Title ><Link style={{ color: '#cc3a3a', textDecoration: 'none' }} to={`/food/${food._id}`}>{food.name}</Link></Card.Title>
                                         <Card.Text style={{ fontWeight: 'bold', fontSize: 20 }}>
                                             ${food.price}
                                         </Card.Text>
@@ -41,6 +42,7 @@ const Shop = () => {
                     </Row>
                 </Container>
             </section>
+            <Footer></Footer>
         </div>
     );
 };

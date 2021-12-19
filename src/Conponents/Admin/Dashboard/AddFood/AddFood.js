@@ -1,22 +1,38 @@
 import React, { useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import axios from 'axios';
-const AddFood = () => {
-    const [food, setFood] = useState({})
-    const handlefood = (e) => {
-        const field = e.target.name;
-        const value = e.target.value;
-        const newData = { ...food };
-        newData[field] = value;
-        setFood(newData);
+import { useForm } from "react-hook-form";
+import Swal from 'sweetalert2';
 
-    }
+const AddFood = () => {
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState(0);
+    const [ing, setIng] = useState('');
+    const [desc, setDesc] = useState('');
+    const [image, setImage] = useState(null);
+
     const handleAddFood = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:1111/food', {
-            food
-        }).then(res => res.data.json())
-            .then(data => console.log(data))
+        if (!image) {
+            return;
+        }
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('price', price);
+        formData.append('ing', ing);
+        formData.append('desc', desc);
+        formData.append('image', image);
+        axios.post('http://localhost:1111/food', formData)
+            .then(res => {
+                if (res.data.insertedId) {
+                    Swal.fire(
+                        'Good job!',
+                        'Food Added to store',
+                        'success'
+                    )
+                }
+            })
+
     }
     return (
         <div>
@@ -25,23 +41,23 @@ const AddFood = () => {
                     <h2 className='login-heading'>Add Food</h2>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Name*</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Name" name="name" onBlur={handlefood} />
+                        <Form.Control type="text" placeholder="Enter Name" name="name" onChange={e => setName(e.target.value)} required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Price*</Form.Label>
-                        <Form.Control className='w-100' type="number" placeholder="Enter Price" name="price" onBlur={handlefood} />
+                        <Form.Control className='w-100' type="number" placeholder="Enter Price" name="price" onChange={e => setPrice(e.target.value)} required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Ingredients</Form.Label>
-                        <Form.Control as="textarea" name="ingredients" onBlur={handlefood} />
+                        <Form.Control as="textarea" name="ing" onChange={e => setIng(e.target.value)} required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Description*</Form.Label>
-                        <Form.Control as="textarea" name="description" onBlur={handlefood} />
+                        <Form.Control as="textarea" name="desc" onChange={e => setDesc(e.target.value)} required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Image link*</Form.Label>
-                        <Form.Control type='text' name="image" onBlur={handlefood} />
+                        <Form.Label>Image*</Form.Label>
+                        <Form.Control type='file' onChange={e => setImage(e.target.files[0])} name="image" required />
                     </Form.Group>
                     <Button variant="danger" type="submit">
                         Add

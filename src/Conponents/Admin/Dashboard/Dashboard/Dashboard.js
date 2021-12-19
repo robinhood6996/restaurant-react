@@ -15,7 +15,8 @@ import ListItem from '@mui/material/ListItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Navigate, Outlet } from 'react-router-dom';
+import useAuth from '../../../../Hooks/useAuth';
 // import DashboardHome from '../DashboardHome/DashboardHome';
 
 const drawerWidth = 240;
@@ -47,7 +48,10 @@ function ResponsiveDrawer(props) {
     );
 
     const container = window !== undefined ? () => window().document.body : undefined;
-
+    const { admin } = useAuth();
+    if (admin !== true) {
+        <Navigate to="/" />
+    }
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />

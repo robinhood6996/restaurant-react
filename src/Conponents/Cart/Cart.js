@@ -6,7 +6,11 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import bg from '../../Images/bugers/1.jpg'
 import Navigation from '../Shared/Navigation';
-import './Cart.css'
+
+import './Cart.css';
+
+
+
 const Cart = () => {
     const carts = useSelector(cart => cart.cart);
 
@@ -18,6 +22,8 @@ const Cart = () => {
 
     }
     let shipping = total > 0 ? 5 : 0;
+
+
     return (
         <div>
             <Navigation></Navigation>
@@ -35,7 +41,7 @@ const Cart = () => {
                     </thead>
                     <tbody>
                         {
-                            carts.map(cart => <tr className='border-bottom'>
+                            carts.map(cart => <tr className='border-bottom' key={cart.id}>
                                 <td><button className='btn btn-danger'>X</button><img src={cart.image} width={60} alt="" /><span className='fw-bold'>{cart.name}</span></td>
                                 <td className='fw-bold'>${cart.price}</td>
                                 <td className='fw-bold'>{cart.qty}</td>
@@ -76,7 +82,7 @@ const Cart = () => {
                 </Table>
                 <div className='d-flex justify-content-center m-2'>
                     <button className='text-center btn btn-dark m-2'><FontAwesomeIcon icon={faArrowLeft} /><Link className='link' to="/shop">Continue Shopping</Link></button>
-                    <button className='text-center btn btn-danger m-2'>Proceed To Checkout <FontAwesomeIcon icon={faArrowRight} /> </button>
+                    <button className='text-center btn btn-danger m-2'><Link className='link' to="/checkout">Proceed To Checkout</Link> <FontAwesomeIcon icon={faArrowRight} /> </button>
                 </div>
             </Container>
         </div>

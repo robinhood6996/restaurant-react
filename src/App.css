@@ -7,3 +7,7 @@
 .link:hover{
     color:white
 }
+
+.food-card{
+transition: 3s;
+}
