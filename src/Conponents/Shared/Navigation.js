@@ -36,6 +36,9 @@ const Navigation = () => {
                             <Nav.Link as={Link} to="/">Home</Nav.Link>
                             <Nav.Link as={Link} to="/cart">Special</Nav.Link>
                             <Nav.Link as={Link} to="/shop">Shop</Nav.Link>
+                            {
+                                user?.displayName && <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
+                            }
                             {/* <NavDropdown title="More" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1">More</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

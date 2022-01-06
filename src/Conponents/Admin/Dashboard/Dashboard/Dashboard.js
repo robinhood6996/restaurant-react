@@ -36,13 +36,19 @@ function ResponsiveDrawer(props) {
             <List>
                 {
                     admin === true ? <div> <ListItem>
-                        <InboxIcon /><Link to="/dashboard/addfood">Add Food</Link>
+                        <InboxIcon /><Link to="/">Home</Link>
                     </ListItem>
+                        <ListItem>
+                            <InboxIcon /><Link to="/dashboard/addfood">Add Food</Link>
+                        </ListItem>
                         <ListItem>
                             <InboxIcon /><Link to="/dashboard/allfood">All Food</Link>
                         </ListItem>
                         <ListItem>
                             <InboxIcon /><Link to="/dashboard/addadmin">Add Admin</Link>
+                        </ListItem>
+                        <ListItem>
+                            <InboxIcon /><Link to="/dashboard/allorder">All Order</Link>
                         </ListItem></div> :
                         <ListItem>
                             <Link style={{ textDecoration: 'none', color: '#cc3a3a', fontWeight: 'bold' }} to="/dashboard/myorder">My Orders</Link>

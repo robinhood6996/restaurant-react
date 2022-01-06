@@ -22,6 +22,7 @@ const AddFood = () => {
         formData.append('ing', ing);
         formData.append('desc', desc);
         formData.append('image', image);
+        console.log(formData)
         axios.post('https://ancient-ravine-11592.herokuapp.com/food', formData)
             .then(res => {
                 if (res.data.insertedId) {
