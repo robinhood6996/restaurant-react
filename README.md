@@ -12,6 +12,7 @@ This is a food ordering website. Providing food delivery to whole country. Anyon
 - React Hook Form
 - React Route-V6
 - AXIOS
+- Redux
 - Fontawesome Icons
 - Javascript
 - HTML
